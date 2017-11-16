@@ -1,32 +1,30 @@
-<h1>Lista de Produtos</h1>
-<table class="table table-hover">
+@extends('layouts.app')
+@section('content')
+    <h1 >Relatório de Vendas</h1>
+    <hr style="clear: both" />
 
+    <table class="table table-hover">
         <thead>
         <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Data da Venda</th>
+            <th>Produto</th>
+            <th>Comprador</th>
+            <th>Quantidade</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+
+        @foreach($vendas as $venda)
+            <tr>
+                <th scope="row">{{ $venda->created_at }}</th>
+                <td>{{ $venda->produto->nome }}</td>
+                <td>{{ $venda->fornecedor->nome }}</td>
+                <td>{{ $venda->quantidade }}</td>
+
+            </tr>
+        @endforeach
+
         </tbody>
-</table>
+    </table>
+
+@endsection

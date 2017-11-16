@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Estoquista - Sistema de gerenciamento de estoque</title>
+    <title>Estoque Fácil - Sistema de gerenciamento de estoque</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -34,13 +34,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('vendas.create') }}">Estoquista</a>
+            <a class="navbar-brand" href="{{ route('vendas.create') }}">Estoque Fácil</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li @if(strpos(Route::currentRouteName(), 'vendas') !== FALSE) class="active" @endif><a href="{{ route('vendas.create') }}">Vendas</a></li>
+                <li @if(strpos(Route::currentRouteName(), 'vendas.create') !== FALSE) class="active" @endif><a href="{{ route('vendas.create') }}">Vendas</a></li>
                 <li @if(strpos(Route::currentRouteName(), 'produtos') !== FALSE) class="active" @endif><a href="{{ route('produtos.index') }}">Produtos</a></li>
                 <li @if(strpos(Route::currentRouteName(), 'fornecedors') !== FALSE) class="active" @endif><a href="{{ route('fornecedors.index') }}">Fornecedores</a></li>
+                <li @if(strpos(Route::currentRouteName(), 'vendas.index') !== FALSE) class="active" @endif><a id="bt-relatorio" href="{{ route('vendas.index') }}">Relatório de Vendas</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

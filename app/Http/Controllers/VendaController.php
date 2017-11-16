@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Forms\VendaForm;
+use App\Fornecedor;
+use App\Produto;
 use App\Venda;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -16,7 +18,9 @@ class VendaController extends Controller
      */
     public function index()
     {
+        $vendas = Venda::all();
 
+        return view('venda.index', compact('vendas'));
     }
 
     /**
@@ -42,8 +46,12 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        Venda::create($request->all());
-        return redirect()->route('vendas.create')->with("vendido", "sim");
+        $produto = Produto::find($request->all()['produto_id']);
+        $fornecedor = Fornecedor::find($request->all()['fornecedor_id']);
+        $venda = new Venda();
+        $vendeu = $venda->realizarVenda($produto, $request->all()['quantidade'], $fornecedor);
+        $vendeu = $vendeu ? 'sim' : 'nao';
+        return redirect()->route('vendas.create')->with("vendido", $vendeu);
     }
 
     /**
